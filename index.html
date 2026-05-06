@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="pageTitle">Landing - Registro e Ingreso</title>
+    <title data-i18n="pageTitle">Registro con Referidos - Comisiones por Invitar</title>
     <!-- Bootstrap 5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons 1.11.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --hero-gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --hero-gradient-light: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
             --hero-gradient-dark: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%);
         }
         [data-bs-theme="light"] .hero-section {
@@ -93,7 +93,6 @@
         [data-bs-theme="dark"] footer {
             border-top: 1px solid rgba(255,255,255,0.1);
         }
-        /* Ajuste para que el botón de ojo no rompa el diseño */
         .input-group .btn-outline-secondary {
             border-color: #dee2e6;
         }
@@ -107,16 +106,18 @@
         [data-bs-theme="dark"] .input-group .btn-outline-secondary:hover {
             background-color: #495057;
         }
-        /* Select de prefijo en registro */
         .input-group select.form-select {
             max-width: 110px;
             flex: 0 0 auto;
         }
-        /* Ajuste para que el select se vea bien en tema oscuro */
         [data-bs-theme="dark"] .form-select {
             background-color: #212529;
             color: #f8f9fa;
             border-color: #495057;
+        }
+        .badge-commission {
+            background: linear-gradient(45deg, #ffc107, #fd7e14);
+            color: #000;
         }
     </style>
 </head>
@@ -126,7 +127,7 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm" data-bs-theme="light">
     <div class="container">
         <a class="navbar-brand fw-bold" href="#">
-            <i class="bi bi-stars me-2"></i><span data-i18n="brand">MiPlataforma</span>
+            <i class="bi bi-people-fill me-2"></i><span data-i18n="brand">ReferidosPro</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" 
                 aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,21 +136,18 @@
         <div class="collapse navbar-collapse" id="navbarMain">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#home" data-i18n="navHome">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#features" data-i18n="navFeatures">Características</a></li>
-                <li class="nav-item"><a class="nav-link" href="#pricing" data-i18n="navPricing">Precios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#how-it-works" data-i18n="navHow">Cómo funciona</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing" data-i18n="navPricing">Membresías</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="navContact">Contacto</a></li>
             </ul>
             <div class="d-flex align-items-center gap-2 flex-wrap">
-                <!-- Idioma -->
                 <div class="btn-group btn-group-sm me-1" role="group" aria-label="Idioma">
                     <button type="button" class="lang-btn active" id="btnLangEs" onclick="setLanguage('es')">ES</button>
                     <button type="button" class="lang-btn" id="btnLangEn" onclick="setLanguage('en')">EN</button>
                 </div>
-                <!-- Tema -->
                 <button class="btn-theme-toggle" id="themeToggle" aria-label="Cambiar tema">
                     <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
                 </button>
-                <!-- Botones Navbar -->
                 <button class="btn btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#loginModal" data-i18n="btnLogin">Ingresar</button>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnRegister">Registrarse</button>
             </div>
@@ -160,84 +158,91 @@
 <!-- Hero Section -->
 <section id="home" class="hero-section text-center">
     <div class="container">
-        <h1 class="display-4 mb-3" data-i18n="heroTitle">Bienvenido a Nuestra Plataforma</h1>
-        <p class="lead mb-4" data-i18n="heroSubtitle">Gestiona tus proyectos, colabora con tu equipo y alcanza tus metas de forma eficiente.</p>
+        <h1 class="display-4 mb-3" data-i18n="heroTitle">Gana comisiones refiriendo usuarios</h1>
+        <p class="lead mb-4" data-i18n="heroSubtitle">Únete a nuestra plataforma, elige tu membresía y recibe pagos por cada persona que invites. ¡Comisiones de por vida!</p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="heroCtaStart">Comenzar ahora</button>
-            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal" data-i18n="heroCtaLogin">Ya tengo cuenta</button>
+            <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="heroCtaStart">Crear cuenta gratis</button>
+            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal" data-i18n="heroCtaLogin">Iniciar sesión</button>
         </div>
     </div>
 </section>
 
-<!-- Features Section -->
-<section id="features" class="py-5">
+<!-- How it works -->
+<section id="how-it-works" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5" data-i18n="featuresTitle">Características principales</h2>
+        <h2 class="text-center mb-5" data-i18n="howTitle">¿Cómo funciona?</h2>
         <div class="row g-4">
             <div class="col-md-4 text-center">
-                <div class="feature-icon mb-3"><i class="bi bi-shield-check"></i></div>
-                <h5 data-i18n="feature1Title">Seguridad Avanzada</h5>
-                <p class="text-muted" data-i18n="feature1Desc">Protección de datos con encriptación de extremo a extremo y autenticación de dos factores.</p>
+                <div class="feature-icon mb-3"><i class="bi bi-person-plus-fill"></i></div>
+                <h5 data-i18n="step1Title">1. Regístrate</h5>
+                <p class="text-muted" data-i18n="step1Desc">Crea tu cuenta gratis y obtén tu enlace de referido único.</p>
             </div>
             <div class="col-md-4 text-center">
-                <div class="feature-icon mb-3"><i class="bi bi-graph-up-arrow"></i></div>
-                <h5 data-i18n="feature2Title">Análisis en Tiempo Real</h5>
-                <p class="text-muted" data-i18n="feature2Desc">Dashboard interactivo con métricas actualizadas al instante para tomar decisiones informadas.</p>
+                <div class="feature-icon mb-3"><i class="bi bi-share-fill"></i></div>
+                <h5 data-i18n="step2Title">2. Comparte tu enlace</h5>
+                <p class="text-muted" data-i18n="step2Desc">Invita a amigos, familiares o seguidores usando tu código personal.</p>
             </div>
             <div class="col-md-4 text-center">
-                <div class="feature-icon mb-3"><i class="bi bi-people-fill"></i></div>
-                <h5 data-i18n="feature3Title">Colaboración en Equipo</h5>
-                <p class="text-muted" data-i18n="feature3Desc">Comparte, edita y comenta en tiempo real con tu equipo desde cualquier dispositivo.</p>
+                <div class="feature-icon mb-3"><i class="bi bi-cash-stack"></i></div>
+                <h5 data-i18n="step3Title">3. Recibe comisiones</h5>
+                <p class="text-muted" data-i18n="step3Desc">Gana un porcentaje por cada referido activo. ¡Comisiones recurrentes!</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Pricing Section -->
+<!-- Pricing / Membresías -->
 <section id="pricing" class="py-5 bg-body-tertiary">
     <div class="container">
-        <h2 class="text-center mb-5" data-i18n="pricingTitle">Planes y Precios</h2>
+        <h2 class="text-center mb-5" data-i18n="pricingTitle">Elige tu membresía</h2>
         <div class="row g-4 justify-content-center">
+            <!-- Básica -->
             <div class="col-md-4">
                 <div class="card pricing-card h-100 shadow-sm">
                     <div class="card-body text-center">
-                        <h5 class="card-title" data-i18n="planBasicTitle">Básico</h5>
+                        <h5 class="card-title" data-i18n="planBasicTitle">Básica</h5>
                         <h3 class="card-subtitle mb-3 text-primary fw-bold">$9<span class="fs-6 fw-normal">/mes</span></h3>
+                        <p class="text-muted" data-i18n="planBasicCommission">Comisión 5% por referido</p>
                         <ul class="list-unstyled">
-                            <li data-i18n="planBasicFeature1">✔ Hasta 5 proyectos</li>
-                            <li data-i18n="planBasicFeature2">✔ 10 GB almacenamiento</li>
-                            <li data-i18n="planBasicFeature3">✔ Soporte por correo</li>
+                            <li data-i18n="planBasicFeature1">✔ 1 enlace de referido</li>
+                            <li data-i18n="planBasicFeature2">✔ Panel de estadísticas</li>
+                            <li data-i18n="planBasicFeature3">✔ Retiro por PayPal</li>
                         </ul>
-                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnChoosePlan">Elegir plan</button>
+                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnChoosePlan">Elegir Básica</button>
                     </div>
                 </div>
             </div>
+            <!-- Premium -->
             <div class="col-md-4">
                 <div class="card pricing-card h-100 shadow border-primary">
                     <div class="card-body text-center">
-                        <span class="badge bg-primary mb-2" data-i18n="popularBadge">Más popular</span>
-                        <h5 class="card-title" data-i18n="planProTitle">Profesional</h5>
+                        <span class="badge bg-warning text-dark mb-2" data-i18n="popularBadge">Más popular</span>
+                        <h5 class="card-title" data-i18n="planProTitle">Premium</h5>
                         <h3 class="card-subtitle mb-3 text-primary fw-bold">$29<span class="fs-6 fw-normal">/mes</span></h3>
+                        <p class="text-muted" data-i18n="planProCommission">Comisión 12% por referido</p>
                         <ul class="list-unstyled">
-                            <li data-i18n="planProFeature1">✔ Proyectos ilimitados</li>
-                            <li data-i18n="planProFeature2">✔ 100 GB almacenamiento</li>
-                            <li data-i18n="planProFeature3">✔ Soporte prioritario</li>
+                            <li data-i18n="planProFeature1">✔ 5 enlaces de referido</li>
+                            <li data-i18n="planProFeature2">✔ Panel avanzado + informes</li>
+                            <li data-i18n="planProFeature3">✔ Retiro exprés 24h</li>
                         </ul>
-                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnChoosePlan">Elegir plan</button>
+                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnChoosePlan">Elegir Premium</button>
                     </div>
                 </div>
             </div>
+            <!-- Élite -->
             <div class="col-md-4">
                 <div class="card pricing-card h-100 shadow-sm">
                     <div class="card-body text-center">
-                        <h5 class="card-title" data-i18n="planEnterpriseTitle">Empresarial</h5>
-                        <h3 class="card-subtitle mb-3 text-primary fw-bold" data-i18n="planEnterprisePrice">Personalizado</h3>
+                        <span class="badge-commission badge mb-2" data-i18n="eliteBadge">Máxima ganancia</span>
+                        <h5 class="card-title" data-i18n="planEnterpriseTitle">Élite</h5>
+                        <h3 class="card-subtitle mb-3 text-primary fw-bold">$59<span class="fs-6 fw-normal">/mes</span></h3>
+                        <p class="text-muted" data-i18n="planEnterpriseCommission">Comisión 20% por referido</p>
                         <ul class="list-unstyled">
-                            <li data-i18n="planEnterpriseFeature1">✔ Todo lo de Profesional</li>
-                            <li data-i18n="planEnterpriseFeature2">✔ Soporte 24/7 dedicado</li>
-                            <li data-i18n="planEnterpriseFeature3">✔ Integraciones personalizadas</li>
+                            <li data-i18n="planEnterpriseFeature1">✔ Enlaces ilimitados</li>
+                            <li data-i18n="planEnterpriseFeature2">✔ Soporte VIP 24/7</li>
+                            <li data-i18n="planEnterpriseFeature3">✔ Retiros instantáneos</li>
                         </ul>
-                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnContactUs">Contáctanos</button>
+                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="btnChoosePlan">Elegir Élite</button>
                     </div>
                 </div>
             </div>
@@ -248,8 +253,8 @@
 <!-- Footer / Contacto -->
 <footer id="contact" class="py-4 bg-body-tertiary">
     <div class="container text-center">
-        <p class="mb-1" data-i18n="footerText">© 2026 MiPlataforma. Todos los derechos reservados.</p>
-        <small class="text-muted" data-i18n="footerContact">contacto@miplataforma.com | +1 234 567 890</small>
+        <p class="mb-1" data-i18n="footerText">© 2026 ReferidosPro. Todos los derechos reservados.</p>
+        <small class="text-muted" data-i18n="footerContact">soporte@referidospro.com | +1 234 567 890</small>
     </div>
 </footer>
 
@@ -264,8 +269,8 @@
             <div class="modal-body">
                 <form id="loginForm" novalidate>
                     <div class="mb-3">
-                        <label for="loginEmail" class="form-label" data-i18n="emailLabel">Correo electrónico</label>
-                        <input type="email" class="form-control" id="loginEmail" required data-i18n-placeholder="emailPlaceholder" placeholder="nombre@ejemplo.com">
+                        <label for="loginUser" class="form-label" data-i18n="usernameLabel">Usuario o correo</label>
+                        <input type="text" class="form-control" id="loginUser" required data-i18n-placeholder="usernamePlaceholder" placeholder="Usuario o correo">
                     </div>
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label" data-i18n="passwordLabel">Contraseña</label>
@@ -299,13 +304,16 @@
                 <form id="registerForm" novalidate>
                     <div class="mb-3">
                         <label for="regName" class="form-label" data-i18n="nameLabel">Nombre completo</label>
-                        <input type="text" class="form-control" id="regName" required data-i18n-placeholder="namePlaceholder" placeholder="Tu nombre">
+                        <input type="text" class="form-control" id="regName" required data-i18n-placeholder="namePlaceholder" placeholder="Tu nombre completo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="regUsername" class="form-label" data-i18n="usernameLabel">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="regUsername" required minlength="4" data-i18n-placeholder="usernamePlaceholderReg" placeholder="Elige un nombre de usuario">
                     </div>
                     <div class="mb-3">
                         <label for="regEmail" class="form-label" data-i18n="emailLabel">Correo electrónico</label>
                         <input type="email" class="form-control" id="regEmail" required data-i18n-placeholder="emailPlaceholder" placeholder="nombre@ejemplo.com">
                     </div>
-                    <!-- Campo de teléfono con prefijo internacional -->
                     <div class="mb-3">
                         <label for="regPhone" class="form-label" data-i18n="phoneLabel">Número de teléfono</label>
                         <div class="input-group">
@@ -328,6 +336,10 @@
                             </select>
                             <input type="tel" class="form-control" id="regPhone" required data-i18n-placeholder="phonePlaceholder" placeholder="612345678">
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regReferral" class="form-label" data-i18n="referralLabel">Código de referido (opcional)</label>
+                        <input type="text" class="form-control" id="regReferral" data-i18n-placeholder="referralPlaceholder" placeholder="Ingresa el código si te invitaron">
                     </div>
                     <div class="mb-3">
                         <label for="regPassword" class="form-label" data-i18n="passwordLabel">Contraseña</label>
@@ -357,54 +369,61 @@
         // === TRADUCCIONES ===
         const translations = {
             es: {
-                pageTitle: "Landing - Registro e Ingreso",
-                brand: "MiPlataforma",
+                pageTitle: "Registro con Referidos - Comisiones por Invitar",
+                brand: "ReferidosPro",
                 navHome: "Inicio",
-                navFeatures: "Características",
-                navPricing: "Precios",
+                navHow: "Cómo funciona",
+                navPricing: "Membresías",
                 navContact: "Contacto",
                 btnLogin: "Ingresar",
                 btnRegister: "Registrarse",
-                heroTitle: "Bienvenido a Nuestra Plataforma",
-                heroSubtitle: "Gestiona tus proyectos, colabora con tu equipo y alcanza tus metas de forma eficiente.",
-                heroCtaStart: "Comenzar ahora",
-                heroCtaLogin: "Ya tengo cuenta",
-                featuresTitle: "Características principales",
-                feature1Title: "Seguridad Avanzada",
-                feature1Desc: "Protección de datos con encriptación de extremo a extremo y autenticación de dos factores.",
-                feature2Title: "Análisis en Tiempo Real",
-                feature2Desc: "Dashboard interactivo con métricas actualizadas al instante para tomar decisiones informadas.",
-                feature3Title: "Colaboración en Equipo",
-                feature3Desc: "Comparte, edita y comenta en tiempo real con tu equipo desde cualquier dispositivo.",
-                pricingTitle: "Planes y Precios",
-                planBasicTitle: "Básico",
-                planBasicFeature1: "✔ Hasta 5 proyectos",
-                planBasicFeature2: "✔ 10 GB almacenamiento",
-                planBasicFeature3: "✔ Soporte por correo",
-                planProTitle: "Profesional",
+                heroTitle: "Gana comisiones refiriendo usuarios",
+                heroSubtitle: "Únete a nuestra plataforma, elige tu membresía y recibe pagos por cada persona que invites. ¡Comisiones de por vida!",
+                heroCtaStart: "Crear cuenta gratis",
+                heroCtaLogin: "Iniciar sesión",
+                howTitle: "¿Cómo funciona?",
+                step1Title: "1. Regístrate",
+                step1Desc: "Crea tu cuenta gratis y obtén tu enlace de referido único.",
+                step2Title: "2. Comparte tu enlace",
+                step2Desc: "Invita a amigos, familiares o seguidores usando tu código personal.",
+                step3Title: "3. Recibe comisiones",
+                step3Desc: "Gana un porcentaje por cada referido activo. ¡Comisiones recurrentes!",
+                pricingTitle: "Elige tu membresía",
+                planBasicTitle: "Básica",
+                planBasicCommission: "Comisión 5% por referido",
+                planBasicFeature1: "✔ 1 enlace de referido",
+                planBasicFeature2: "✔ Panel de estadísticas",
+                planBasicFeature3: "✔ Retiro por PayPal",
+                planProTitle: "Premium",
                 popularBadge: "Más popular",
-                planProFeature1: "✔ Proyectos ilimitados",
-                planProFeature2: "✔ 100 GB almacenamiento",
-                planProFeature3: "✔ Soporte prioritario",
-                planEnterpriseTitle: "Empresarial",
-                planEnterprisePrice: "Personalizado",
-                planEnterpriseFeature1: "✔ Todo lo de Profesional",
-                planEnterpriseFeature2: "✔ Soporte 24/7 dedicado",
-                planEnterpriseFeature3: "✔ Integraciones personalizadas",
+                planProCommission: "Comisión 12% por referido",
+                planProFeature1: "✔ 5 enlaces de referido",
+                planProFeature2: "✔ Panel avanzado + informes",
+                planProFeature3: "✔ Retiro exprés 24h",
+                planEnterpriseTitle: "Élite",
+                eliteBadge: "Máxima ganancia",
+                planEnterpriseCommission: "Comisión 20% por referido",
+                planEnterpriseFeature1: "✔ Enlaces ilimitados",
+                planEnterpriseFeature2: "✔ Soporte VIP 24/7",
+                planEnterpriseFeature3: "✔ Retiros instantáneos",
                 btnChoosePlan: "Elegir plan",
-                btnContactUs: "Contáctanos",
-                footerText: "© 2026 MiPlataforma. Todos los derechos reservados.",
-                footerContact: "contacto@miplataforma.com | +1 234 567 890",
+                footerText: "© 2026 ReferidosPro. Todos los derechos reservados.",
+                footerContact: "soporte@referidospro.com | +1 234 567 890",
                 loginTitle: "Iniciar Sesión",
                 registerTitle: "Crear Cuenta",
+                usernameLabel: "Usuario o correo",
+                usernamePlaceholder: "Usuario o correo",
                 emailLabel: "Correo electrónico",
                 passwordLabel: "Contraseña",
                 nameLabel: "Nombre completo",
                 phoneLabel: "Número de teléfono",
+                referralLabel: "Código de referido (opcional)",
                 emailPlaceholder: "nombre@ejemplo.com",
                 passwordPlaceholder: "Ingresa tu contraseña",
-                namePlaceholder: "Tu nombre",
+                namePlaceholder: "Tu nombre completo",
                 phonePlaceholder: "612345678",
+                referralPlaceholder: "Ingresa el código si te invitaron",
+                usernamePlaceholderReg: "Elige un nombre de usuario",
                 btnLoginSubmit: "Ingresar",
                 btnRegisterSubmit: "Registrarse",
                 noAccount: "¿No tienes cuenta?",
@@ -413,54 +432,61 @@
                 loginLink: "Inicia sesión"
             },
             en: {
-                pageTitle: "Landing - Sign Up & Login",
-                brand: "MyPlatform",
+                pageTitle: "Sign Up with Referrals - Earn Commissions",
+                brand: "ReferralHub",
                 navHome: "Home",
-                navFeatures: "Features",
-                navPricing: "Pricing",
+                navHow: "How it works",
+                navPricing: "Memberships",
                 navContact: "Contact",
                 btnLogin: "Login",
                 btnRegister: "Sign Up",
-                heroTitle: "Welcome to Our Platform",
-                heroSubtitle: "Manage your projects, collaborate with your team and achieve your goals efficiently.",
-                heroCtaStart: "Get Started",
-                heroCtaLogin: "I have an account",
-                featuresTitle: "Main Features",
-                feature1Title: "Advanced Security",
-                feature1Desc: "Data protection with end-to-end encryption and two-factor authentication.",
-                feature2Title: "Real-Time Analytics",
-                feature2Desc: "Interactive dashboard with instantly updated metrics for informed decisions.",
-                feature3Title: "Team Collaboration",
-                feature3Desc: "Share, edit and comment in real time with your team from any device.",
-                pricingTitle: "Plans & Pricing",
+                heroTitle: "Earn commissions by referring users",
+                heroSubtitle: "Join our platform, choose your membership and get paid for every person you invite. Lifetime commissions!",
+                heroCtaStart: "Create free account",
+                heroCtaLogin: "Login",
+                howTitle: "How does it work?",
+                step1Title: "1. Sign Up",
+                step1Desc: "Create your free account and get your unique referral link.",
+                step2Title: "2. Share your link",
+                step2Desc: "Invite friends, family or followers using your personal code.",
+                step3Title: "3. Receive commissions",
+                step3Desc: "Earn a percentage for every active referral. Recurring commissions!",
+                pricingTitle: "Choose your membership",
                 planBasicTitle: "Basic",
-                planBasicFeature1: "✔ Up to 5 projects",
-                planBasicFeature2: "✔ 10 GB storage",
-                planBasicFeature3: "✔ Email support",
-                planProTitle: "Professional",
-                popularBadge: "Most Popular",
-                planProFeature1: "✔ Unlimited projects",
-                planProFeature2: "✔ 100 GB storage",
-                planProFeature3: "✔ Priority support",
-                planEnterpriseTitle: "Enterprise",
-                planEnterprisePrice: "Custom",
-                planEnterpriseFeature1: "✔ All Professional features",
-                planEnterpriseFeature2: "✔ Dedicated 24/7 support",
-                planEnterpriseFeature3: "✔ Custom integrations",
-                btnChoosePlan: "Choose Plan",
-                btnContactUs: "Contact Us",
-                footerText: "© 2026 MyPlatform. All rights reserved.",
-                footerContact: "contact@myplatform.com | +1 234 567 890",
+                planBasicCommission: "5% commission per referral",
+                planBasicFeature1: "✔ 1 referral link",
+                planBasicFeature2: "✔ Statistics dashboard",
+                planBasicFeature3: "✔ PayPal withdrawal",
+                planProTitle: "Premium",
+                popularBadge: "Most popular",
+                planProCommission: "12% commission per referral",
+                planProFeature1: "✔ 5 referral links",
+                planProFeature2: "✔ Advanced dashboard + reports",
+                planProFeature3: "✔ Express 24h withdrawal",
+                planEnterpriseTitle: "Elite",
+                eliteBadge: "Maximum earnings",
+                planEnterpriseCommission: "20% commission per referral",
+                planEnterpriseFeature1: "✔ Unlimited links",
+                planEnterpriseFeature2: "✔ VIP support 24/7",
+                planEnterpriseFeature3: "✔ Instant withdrawals",
+                btnChoosePlan: "Choose plan",
+                footerText: "© 2026 ReferralHub. All rights reserved.",
+                footerContact: "support@referralhub.com | +1 234 567 890",
                 loginTitle: "Login",
                 registerTitle: "Create Account",
+                usernameLabel: "Username or email",
+                usernamePlaceholder: "Username or email",
                 emailLabel: "Email",
                 passwordLabel: "Password",
-                nameLabel: "Full Name",
-                phoneLabel: "Phone Number",
+                nameLabel: "Full name",
+                phoneLabel: "Phone number",
+                referralLabel: "Referral code (optional)",
                 emailPlaceholder: "name@example.com",
                 passwordPlaceholder: "Enter your password",
-                namePlaceholder: "Your name",
+                namePlaceholder: "Your full name",
                 phonePlaceholder: "612345678",
+                referralPlaceholder: "Enter code if you were invited",
+                usernamePlaceholderReg: "Choose a username",
                 btnLoginSubmit: "Login",
                 btnRegisterSubmit: "Sign Up",
                 noAccount: "Don't have an account?",
@@ -544,7 +570,7 @@
         setupPasswordToggle('toggleLoginPassword', 'loginPassword', 'loginEyeIcon');
         setupPasswordToggle('toggleRegPassword', 'regPassword', 'regEyeIcon');
 
-        // === MANEJO DE FORMULARIOS (PREVENIR ENVÍO) ===
+        // === MANEJO DE FORMULARIOS ===
         const getCurrentLang = () => localStorage.getItem('appLang') || 'es';
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -558,14 +584,18 @@
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const lang = getCurrentLang();
+            const username = document.getElementById('regUsername').value;
             const prefix = document.getElementById('regPrefix').value;
             const phone = document.getElementById('regPhone').value;
-            alert(lang === 'es' ? `Registro simulado. Teléfono: ${prefix} ${phone}` : `Registration simulated. Phone: ${prefix} ${phone}`);
+            const referral = document.getElementById('regReferral').value || (lang === 'es' ? 'Ninguno' : 'None');
+            alert(lang === 'es' 
+                ? `Registro simulado.\nUsuario: ${username}\nTeléfono: ${prefix} ${phone}\nReferido: ${referral}` 
+                : `Registration simulated.\nUsername: ${username}\nPhone: ${prefix} ${phone}\nReferral: ${referral}`);
             const modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
             if (modal) modal.hide();
         });
 
-        // === SINCRONIZAR TEMA CON CAMBIOS DEL SISTEMA (OPCIONAL) ===
+        // Sincronizar tema con cambios del sistema (si el usuario no ha elegido manualmente)
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('appTheme')) {
                 applyTheme(e.matches ? 'dark' : 'light');
